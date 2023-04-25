@@ -4,7 +4,6 @@ import java.net.URI;
 class Handler implements URLHandler {
 
     String message = "";
-    int counter = 0;
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
@@ -14,14 +13,9 @@ class Handler implements URLHandler {
             if (url.getPath().contains("/add-message")) {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
-                    if (counter == 0){
-                        message += parameters[1];
-                    }
-                    else {
-                        message += "\n" + parameters[1];
-                        return message;
-                    }
+                    message += parameters[1] + "\n";
                 }
+                return message;
             }
             return "404 Not Found!";
         }
